@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    {% block head %}
+    <title>CarRental &mdash; Free Website Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/jquery.fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/owl.carousel.min') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/owl.theme.default.min') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/fonts/flaticon/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/aos.css') }}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+    {% endblock %}
+  </head>
+
+  <body>
+
+    
+    <div class="site-wrap" id="home-section">
+
+      <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div>
+
+
+
+      <header class="site-navbar site-navbar-target" role="banner">
+
+        <div class="container">
+          <div class="row align-items-center position-relative">
+
+            <div class="col-3">
+              <div class="site-logo">
+                <a href="{{url_for('home')}}"><strong>CarRental</strong></a>
+              </div>
+            </div>
+
+            <div class="col-9  text-right">
+              
+              <span class="d-inline-block d-lg-none"><a href="#" class=" site-menu-toggle js-menu-toggle py-5 "><span class="icon-menu h3 text-black"></span></a></span>
+
+              <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+                <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                  <li class="active"><a href="{{url_for('home')}}" class="nav-link">Home</a></li>
+                  <li><a href="{{url_for('bookings')}}" class="nav-link">My Bookings</a></li>
+                  <li><a href="{{url_for('bills')}}" class="nav-link">Dues</a></li>
+                </ul>
+              </nav>
+            </div>
+
+            
+          </div>
+        </div>
+
+      </header>
+
+      
+      <div class="hero" style="background-image: url('images/hero_1_a.jpg');"> 
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-lg-10">
+
+              <div class="row mb-5">
+                <div class="col-lg-7 intro">
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <h1><strong>Rent a car</strong> is within your finger tips.</h1>
+                </div>
+              </div>
+
+              <form class="trip-form" method="POST">
+                <div class="row align-items-center">
+                    <div class="mb-3 mb-md-0 col-md-3">
+                        <label for="car_type">Car Type:</label>
+                        <select name="car_type" class="custom-select form-control">
+                            <option value="">ANY</option>
+                            <option value="compact">COMPACT</option>
+                            <option value="economy">ECONOMY</option>
+                            <option value="full size">FULL SIZE</option>
+                            <option value="full size suv">FULL SIZE SUV</option>
+                            <option value="luxury car">LUXURY CAR</option>
+                            <option value="mid size">MID SIZE</option>
+                            <option value="mid size suv">MID SIZE SUV</option>
+                            <option value="mini van">MINI VAN</option>
+                            <option value="standard">STANDARD</option>
+                            <option value="standard suv">STANDARD SUV</option>
+                        </select>
+                    </div>
+            
+                    <div class="mb-3 mb-md-0 col-md-3">
+                        <div class="form-control-wrap">
+                            
+                        </div>
+                    </div>
+            
+                    <div class="mb-3 mb-md-0 col-md-3">
+                        <div class="form-control-wrap">
+                            
+                        </div>
+                    </div>
+            
+                    <div class="mb-3 mb-md-0 col-md-6">
+                      <br>
+                        <div class="form-control-wrap">
+                            <label for="pick_up">Pick-up Location:</label>
+                            <input type="text" name="pick_up" placeholder="Pick up" class="form-control datepicker px-3">
+                        </div>
+                    </div>
+            
+                    <div class="mb-3 mb-md-0 col-md-6">
+                      <br>
+                        <div class="form-control-wrap">
+                        </div>
+                    </div>
+            
+                    <div class="mb-3 mb-md-0 col-md-6">
+                        <br>
+                        <input type="submit" value="Search Cars" class="btn btn-primary btn-block py-3">
+                    </div>
+                </div>
+                    <br>
+                    <p>Confused about what car to get? <a href="{{url_for('car_info')}}">Click here for more info</a></p>
+                </div>
+              </form>
+              
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

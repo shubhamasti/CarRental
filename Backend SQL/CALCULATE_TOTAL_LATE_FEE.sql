@@ -1,0 +1,50 @@
+DROP PROCEDURE IF EXISTS CALCULATE_LATE_FEE_AND_TAX;
+
+DELIMITER //
+
+CREATE PROCEDURE CALCULATE_LATE_FEE_AND_TAX(
+  IN actualReturnDate DATE,
+  IN bookingId CHAR(5)  -- Adjust the VARCHAR length according to your schema
+)
+BEGIN
+  DECLARE lateFeePerDay DECIMAL(10,2);
+  DECLARE DayDifference DECIMAL(10,2);
+  DECLARE totalLateFee DECIMAL(10,2);
+  DECLARE totalTax DECIMAL(10,2);
+  DECLARE regNo CHAR(7);
+  DECLARE amt FLOAT(10,2);
+  DECLARE ReturnDate DATE;
+
+  SELECT REGISTRATION_NUMBER FROM BOOKING_DETAILS WHERE BOOKING_ID = bookingId INTO regNo;
+  SELECT RET_DT_TIME FROM BOOKING_DETAILS WHERE BOOKING_ID = bookingId INTO ReturnDate;
+
+  -- UPDATE BOOKING_DETAILS SET ACT_RET_DT_TIME = actualReturnDate WHERE BOOKING_ID = bookingId;
+
+  SELECT CC.LATE_FEE_PER_DAY INTO lateFeePerDay
+  FROM CAR_CATEGORY CC
+  INNER JOIN CAR C ON CC.CATEGORY_NAME = C.CATEGORY_NAME
+  WHERE C.REGISTRATION_NUMBER = regNo;
+
+  SELECT AMOUNT FROM BOOKING_DETAILS WHERE BOOKING_ID = bookingId INTO amt;
+
+  IF actualReturnDate > ReturnDate THEN
+    SET dayDifference = DATEDIFF(actualReturnDate, ReturnDate);
+    SET totalLateFee = dayDifference * lateFeePerDay;
+  ELSE
+    SET totalLateFee = 0;
+  END IF;
+  
+  SET totalTax = (amt + totalLateFee) * 0.18;
+
+  UPDATE BOOKING_DETAILS SET LATE_FEE = totalLateFee, TAX_AMOUNT = totalTax, 
+  ACT_RET_DT_TIME = actualReturnDate, BOOKING_STATUS = 'R' WHERE BOOKING_ID = bookingId;
+
+
+END //
+
+DELIMITER ;
+
+
+-- CALL CALCULATE_LATE_FEE_AND_TAX('2023-01-27', 'B1001');
+
+-- CALL CALCULATE_LATE_FEE_AND_TAX(NULL, 'B1002');

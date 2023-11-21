@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <title>CarRental &mdash; Car Category Information</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/jquery.fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/owl.carousel.min') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/owl.theme.default.min') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/fonts/flaticon/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+    <style>
+        /* Add custom CSS for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        tr:hover {
+            background-color: #dcdcdc;
+        }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    <div class="site-wrap" id="home-section">
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <header class="site-navbar site-navbar-target" role="banner">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-3">
+                        <div class="site-logo">
+                            <a href="{{url_for('home')}}"><strong>CarRental</strong></a>
+                        </div>
+                    </div>
+                    <div class="col-9  text-right">
+                        <span class="d-inline-block d-lg-none">
+                            <a href="#" class=" site-menu-toggle js-menu-toggle py-5 ">
+                                <span class="icon-menu h3 text-black"></span>
+                            </a>
+                        </span>
+                        <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                                <li class="active">
+                                    <a href="{{url_for('home')}}" class="nav-link">Home</a>
+                                </li>
+                                <li>
+                                    <a href="{{url_for('bookings')}}" class="nav-link">My Bookings</a>
+                                </li>
+                                <li><a href="{{url_for('bills')}}" class="nav-link">Dues</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="hero" style="background-image: url('images/hero_1_a.jpg');">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="row mb-5">
+                            <div class="col-lg-7 intro">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <h1><strong>Car Category</strong> Information</h1>
+                            </div>
+                        </div>
+                        {% if data %}
+                        <table>
+                            <tr>
+                                <th>Category Name</th>
+                                <th>No. of Luggage</th>
+                                <th>No. of Persons</th>
+                                <th>Cost per Day</th>
+                                <th>Late Fee per Day</th>
+                            </tr>
+                            <tbody>
+                                {% for category in data %}
+                                <tr>
+                                    <td>{{ category[0] }}</td>
+                                    <td>{{ category[1] }}</td>
+                                    <td>{{ category[2] }}</td>
+                                    <td>Rs. {{ category[3] | round(2) }}</td>
+                                    <td>Rs. {{ category[4] | round(2) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <p>No car category information available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="site-section bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <h2 class="section-heading"></h2>
+              <p class="mb-5"></p>    
+            </div>
+          </div>
+          
+  
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+  
+              <div class="listing d-block  align-items-stretch">
+                <div class="listing-img h-100 mr-4">
+                  <img src="{{ url_for('static', filename='../static/images/car_6.jpg') }}" alt="Image" class="img-fluid">
+                </div>
+                <div class="listing-contents h-100">
+                  <h3>Mitsubishi Pajero</h3>
+                </div>
+              </div>
+            </div>
+  
+
+            <div class="col-md-6 col-lg-4 mb-4">
+  
+              <div class="listing d-block  align-items-stretch">
+                <div class="listing-img h-100 mr-4">
+                  <img src="{{ url_for('static', filename='../static/images/car_5.jpg') }}" alt="Image" class="img-fluid">
+                </div>
+                <div class="listing-contents h-100">
+                  <h3>Nissan Moco</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+
+        <div class="listing d-block  align-items-stretch">
+            <div class="listing-img h-100 mr-4">
+                <img src="{{ url_for('static', filename='../static/images/car_4.jpg') }}" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-contents h-100">
+                <h3>Toyota Corolla</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+
+        <div class="listing d-block  align-items-stretch">
+            <div class="listing-img h-100 mr-4">
+                <img src="{{ url_for('static', filename='../static/images/car_3.jpg') }}" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-contents h-100">
+                <h3>Toyota Prius</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+
+        <div class="listing d-block  align-items-stretch">
+            <div class="listing-img h-100 mr-4">
+                <img src="{{ url_for('static', filename='../static/images/car_2.jpg') }}" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-contents h-100">
+                <h3>Toyota Vitz</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 mb-4">
+
+        <div class="listing d-block  align-items-stretch">
+            <div class="listing-img h-100 mr-4">
+                <img src="{{ url_for('static', filename='../static/images/car_1.jpg') }}" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-contents h-100">
+                <h3>Toyota Aqua</h3>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
