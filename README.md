@@ -34,8 +34,6 @@ To get the Car Rental Management System up and running on your local machine, fo
 3. Set the parameters in the DMBS connection
    And voila you are ready to run
 
-Absolutely, I'll incorporate that into the "Running the Application" section:
-
 ---
 
 ### Running the Application
